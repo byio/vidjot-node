@@ -4,7 +4,7 @@ const router = express.Router();
 
 // / route
 router.get('/', (req, res) => {
-  res.send('get / route');
+  res.render('../views/index');
 });
 
 module.exports = router;

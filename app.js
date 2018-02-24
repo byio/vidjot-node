@@ -1,6 +1,13 @@
 const express = require('express');
+const exphbs = require('express-handlebars');
 
 const app = express();
+
+// Handlebars Middleware
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
 
 // Load Routes
 const index = require('./routes/index');
