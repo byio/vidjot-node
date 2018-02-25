@@ -15,6 +15,9 @@ mongoose.connect(db.mongoURI)
         })
         .catch(err => console.log(err));
 
+// Load Models
+require('./models/Idea');
+
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
