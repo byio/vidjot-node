@@ -28,12 +28,11 @@ exports.handleAddIdea = (req, res) => {
 };
 
 exports.getAllIdeas = (req, res) => {
-  res.send('wired up get /ideas route!');
-  // Idea.find()
-  //     .sort({ date: 'desc' })
-  //     .then(ideas => {
-  //       res.render('ideas/index', {
-  //         ideas
-  //       });
-  //     });
+  Idea.find()
+      .sort({ date: 'desc' })
+      .then(ideas => {
+        res.render('ideas/index', {
+          ideas
+        });
+      });
 };
