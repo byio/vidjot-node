@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 
@@ -24,6 +25,10 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 app.set('views',path.join(__dirname+'/views/'));
+
+// Body Parser Middleware (allows us to access req.body)
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Load Routes
 const index = require('./routes/index');
