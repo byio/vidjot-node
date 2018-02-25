@@ -27,9 +27,11 @@ app.set('views',path.join(__dirname+'/views/'));
 
 // Load Routes
 const index = require('./routes/index');
+const ideas = require('./routes/ideas');
 
 // Use Routes
 app.use('/', index);
+app.use('/ideas', ideas);
 
 const port = 5000;
 
