@@ -1,3 +1,3 @@
 exports.renderAddIdeaForm = (req, res) => {
-  res.send('add idea form');
+  res.render('ideas/add');
 };
