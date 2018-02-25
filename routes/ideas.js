@@ -7,6 +7,7 @@ const idea_controller = require('../controllers/ideaController');
 
 // /ideas Routes
 router.get('/add', idea_controller.renderAddIdeaForm);
+router.get('/', idea_controller.getAllIdeas);
 router.post('/', idea_controller.handleAddIdea);
 
 module.exports = router;
