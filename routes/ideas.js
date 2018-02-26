@@ -9,5 +9,6 @@ const idea_controller = require('../controllers/ideaController');
 router.get('/add', idea_controller.renderAddIdeaForm);
 router.get('/', idea_controller.getAllIdeas);
 router.post('/', idea_controller.handleAddIdea);
+router.get('/edit/:id', idea_controller.renderEditForm);
 
 module.exports = router;

@@ -36,3 +36,9 @@ exports.getAllIdeas = (req, res) => {
         });
       });
 };
+
+exports.renderEditForm = (req, res) => {
+  res.render('ideas/edit', {
+    id: req.params.id
+  });
+};
