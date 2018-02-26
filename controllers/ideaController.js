@@ -45,3 +45,7 @@ exports.renderEditForm = (req, res) => {
         });
       });
 };
+
+exports.handleEditIdea = (req, res) => {
+  res.send('put /ideas/:id route');
+};

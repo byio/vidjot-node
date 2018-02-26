@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 
@@ -29,6 +30,9 @@ app.set('views',path.join(__dirname+'/views/'));
 // Body Parser Middleware (allows us to access req.body)
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// Method Override Middleware
+app.use(methodOverride('_method'));
 
 // Load Routes
 const index = require('./routes/index');
