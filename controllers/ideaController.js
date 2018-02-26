@@ -38,7 +38,10 @@ exports.getAllIdeas = (req, res) => {
 };
 
 exports.renderEditForm = (req, res) => {
-  res.render('ideas/edit', {
-    id: req.params.id
-  });
+  Idea.findOne({ _id: req.params.id })
+      .then(idea => {
+        res.render('ideas/edit', {
+          idea
+        });
+      });
 };
