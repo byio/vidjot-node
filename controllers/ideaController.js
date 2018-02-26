@@ -47,5 +47,15 @@ exports.renderEditForm = (req, res) => {
 };
 
 exports.handleEditIdea = (req, res) => {
-  res.send('put /ideas/:id route');
+  Idea.findOne({ _id: req.params.id })
+      .then(idea => {
+        // setting new values
+        idea.title = req.body.title;
+        idea.details = req.body.details;
+        // saving update
+        idea.save()
+            .then(idea => {
+              res.redirect('/ideas');
+            });
+      });
 };
