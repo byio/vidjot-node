@@ -54,10 +54,12 @@ app.use((req, res, next) => {
 // Load Routes
 const index = require('./routes/index');
 const ideas = require('./routes/ideas');
+const users = require('./routes/users');
 
 // Use Routes
 app.use('/', index);
 app.use('/ideas', ideas);
+app.use('/users', users);
 
 const port = 5000;
 
