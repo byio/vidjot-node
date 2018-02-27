@@ -2,9 +2,9 @@
 const User = require('../models/User');
 
 exports.renderLoginForm = (req, res) => {
-  res.send('this is the login form page!');
+  res.render('users/login');
 };
 
 exports.renderRegisterForm = (req, res) => {
-  res.send('this is the registration form page!');
+  res.render('users/register');
 };
