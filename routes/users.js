@@ -2,12 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/login', (req, res) => {
-  res.send('/users/login route');
-});
+// Load User Controller
+const user_controller = require('../controllers/userController');
 
-router.get('/register', (req, res) => {
-  res.send('/users/register route baby!');
-});
+router.get('/login', user_controller.renderLoginForm);
+
+router.get('/register', user_controller.renderRegisterForm);
 
 module.exports = router;
