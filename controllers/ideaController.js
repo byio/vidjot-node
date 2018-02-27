@@ -22,6 +22,7 @@ exports.handleAddIdea = (req, res) => {
     };
     new Idea(newIdea).save()
                      .then(idea => {
+                       req.flash('success_msg', 'Video idea added successfully!');
                        res.redirect('/ideas');
                      });
   }
@@ -55,6 +56,7 @@ exports.handleEditIdea = (req, res) => {
         // saving update
         idea.save()
             .then(idea => {
+              req.flash('success_msg', 'Video idea updated successfully!');
               res.redirect('/ideas');
             });
       });
@@ -63,6 +65,7 @@ exports.handleEditIdea = (req, res) => {
 exports.handleDeleteIdea = (req, res) => {
   Idea.remove({ _id: req.params.id })
       .then(() => {
+        req.flash('success_msg', 'Video idea removed successfully!');
         res.redirect('/ideas');
       });
 };
