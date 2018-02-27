@@ -11,5 +11,6 @@ router.get('/', idea_controller.getAllIdeas);
 router.post('/', idea_controller.handleAddIdea);
 router.get('/edit/:id', idea_controller.renderEditForm);
 router.put('/:id', idea_controller.handleEditIdea);
+router.delete('/:id', idea_controller.handleDeleteIdea);
 
 module.exports = router;

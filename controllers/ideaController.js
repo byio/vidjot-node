@@ -59,3 +59,10 @@ exports.handleEditIdea = (req, res) => {
             });
       });
 };
+
+exports.handleDeleteIdea = (req, res) => {
+  Idea.remove({ _id: req.params.id })
+      .then(() => {
+        res.redirect('/ideas');
+      });
+};
