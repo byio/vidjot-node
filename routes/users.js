@@ -1,4 +1,5 @@
 const express = require('express');
+const { ensureAuthenticated } = require('../helpers/auth');
 
 const router = express.Router();
 
