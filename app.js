@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const exphbs = require('express-handlebars');
 
 const app = express();
@@ -32,6 +33,9 @@ app.use(bodyParser.json());
 
 // Method Override Middleware
 app.use(methodOverride('_method'));
+
+// Load Passport Config
+require('./config/passport')(passport);
 
 // Express Session Middleware
 app.use(session({
