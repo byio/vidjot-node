@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 // Load User Model
 const User = require('../models/User');
@@ -9,6 +10,14 @@ exports.renderLoginForm = (req, res) => {
 
 exports.renderRegisterForm = (req, res) => {
   res.render('users/register');
+};
+
+exports.handleUsersLogin = (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/ideas',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  })(req, res, next);
 };
 
 exports.handleUsersRegistration = (req, res) => {
