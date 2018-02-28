@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs');
+
 // Load User Model
 const User = require('../models/User');
 
@@ -10,22 +12,43 @@ exports.renderRegisterForm = (req, res) => {
 };
 
 exports.handleUsersRegistration = (req, res) => {
+  const { name, email, password, password2 } = req.body;
+  // server side validation for password
   let errors = [];
-  if (req.body.password !== req.body.password2) {
+  if (password !== password2) {
     errors.push({ text: 'Passwords do not match.' });
   }
-  if (req.body.password.length < 4) {
+  if (password.length < 4) {
     errors.push({ text: 'Password must be at least 4 characters long.' });
   }
   if (errors.length > 0) {
-    res.render('users/register', {
-      errors,
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-      password2: req.body.password2
-    });
+    res.render('users/register', {errors, name, email, password, password2});
   } else {
-    res.send('passed');
+    // server side validation for unique email
+    User.findOne({ email })
+        .then(user => {
+          if (user) {
+            req.flash('error_msg', 'Email already in use.');
+            res.redirect('/users/register');
+          } else {
+            const newUser = new User({ name, email, password });
+            // encrypt password with bcrypt
+            bcrypt.genSalt(10, (err, salt) => {
+              if (err) throw err;
+              bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if (err) throw err;
+                newUser.password = hash;
+                newUser.save()
+                       .then(user => {
+                         req.flash('success_msg', 'Registered! You can now login.');
+                         res.redirect('/users/login');
+                       })
+                       .catch(err => {
+                         if (err) throw err;
+                       });
+              });
+            });
+          }
+        });
   }
 };
