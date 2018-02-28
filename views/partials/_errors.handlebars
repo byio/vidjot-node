@@ -1,3 +1,11 @@
+<!-- login errors (string) -->
+{{#if error}}
+  <div class="alert alert-danger">
+    {{error}}
+  </div>
+{{/if}}
+
+<!-- normal errors (array) -->
 {{#each errors}}
   <div class="alert alert-danger">
     {{text}}
