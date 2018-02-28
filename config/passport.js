@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 module.exports = (passport) => {
+
+  // handle local login stratey
   passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
     // find user by email
     User.findOne({ email })
@@ -24,4 +26,15 @@ module.exports = (passport) => {
           }
         });
   }));
+
+  // serialize user and deserialize user (support login sessions)
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+  passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+      done(err, user);
+    });
+  });
+
 };
