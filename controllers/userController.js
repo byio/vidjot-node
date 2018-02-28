@@ -20,6 +20,12 @@ exports.handleUsersLogin = (req, res, next) => {
   })(req, res, next);
 };
 
+exports.handleUsersLogout = (req, res) => {
+  req.logout();
+  req.flash('success_msg', 'You are now logged out.');
+  res.redirect('/users/login');
+};
+
 exports.handleUsersRegistration = (req, res) => {
   const { name, email, password, password2 } = req.body;
   // server side validation for password

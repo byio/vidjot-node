@@ -27,21 +27,33 @@
       </ul>
       <!-- Navbar Right -->
       <ul class="navbar-nav ml-auto">
+        {{#if user}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" href="#">
+            Video Ideas
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/ideas">
+              <i class="fa fa-lightbulb"></i> Ideas
+            </a>
+            <a class="dropdown-item" href="/ideas/add">
+              <i class="fa fa-plus"></i>
+              Add an Idea
+            </a>
+            <a class="dropdown-item" href="/users/logout">
+              <i class="fa fa-sign-out-alt"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+        {{else}}
         <li class="nav-item">
           <a class="nav-link" href="/users/login">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/users/register">Register</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink" href="#">
-            Video Ideas
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="/ideas">Ideas</a>
-            <a class="dropdown-item" href="/ideas/add">Add an Idea</a>
-          </div>
-        </li>
+        {{/if}}
       </ul>
     </div>
   </div>
