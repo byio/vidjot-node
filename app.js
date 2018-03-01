@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+const helmet = require('helmet');
 const session = require('express-session');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
@@ -33,6 +34,9 @@ app.use(bodyParser.json());
 
 // Method Override Middleware
 app.use(methodOverride('_method'));
+
+// Helmet Nocache Middleware
+app.use(helmet.noCache());
 
 // Load Passport Config
 require('./config/passport')(passport);
