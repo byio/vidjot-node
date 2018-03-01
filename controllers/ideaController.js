@@ -18,7 +18,8 @@ exports.handleAddIdea = (req, res) => {
   } else {
     const newIdea = {
       title: req.body.title,
-      details: req.body.details
+      details: req.body.details,
+      user: req.user._id
     };
     new Idea(newIdea).save()
                      .then(idea => {
