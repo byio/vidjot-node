@@ -54,7 +54,7 @@ exports.renderEditForm = (req, res) => {
 };
 
 exports.handleEditIdea = (req, res) => {
-  Idea.findOne({ _id: req.params.id })
+  Idea.findOne({ _id: req.params.id, user: req.user.id })
       .then(idea => {
         // setting new values
         idea.title = req.body.title;
@@ -65,13 +65,21 @@ exports.handleEditIdea = (req, res) => {
               req.flash('success_msg', 'Video idea updated successfully!');
               res.redirect('/ideas');
             });
+      })
+      .catch(err => {
+        req.flash('error_msg', 'Unauthorized.');
+        res.redirect('/ideas');
       });
 };
 
 exports.handleDeleteIdea = (req, res) => {
-  Idea.remove({ _id: req.params.id })
+  Idea.findOneAndRemove({ _id: req.params.id, user: req.user.id })
       .then(() => {
         req.flash('success_msg', 'Video idea removed successfully!');
+        res.redirect('/ideas');
+      })
+      .catch(err => {
+        req.flash('error_msg', 'Unauthorized.');
         res.redirect('/ideas');
       });
 };
