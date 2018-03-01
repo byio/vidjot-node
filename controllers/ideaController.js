@@ -30,7 +30,7 @@ exports.handleAddIdea = (req, res) => {
 };
 
 exports.getAllIdeas = (req, res) => {
-  Idea.find()
+  Idea.find({ user: req.user._id })
       .sort({ date: 'desc' })
       .then(ideas => {
         res.render('ideas/index', {
