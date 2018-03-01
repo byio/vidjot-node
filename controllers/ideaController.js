@@ -42,9 +42,14 @@ exports.getAllIdeas = (req, res) => {
 exports.renderEditForm = (req, res) => {
   Idea.findOne({ _id: req.params.id })
       .then(idea => {
-        res.render('ideas/edit', {
-          idea
-        });
+        if (idea.user != req.user._id) {
+          req.flash('error_msg', 'Unauthorized.');
+          res.redirect('/ideas');
+        } else {
+          res.render('ideas/edit', {
+            idea
+          });
+        }
       });
 };
 
