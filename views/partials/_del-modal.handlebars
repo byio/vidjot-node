@@ -1,0 +1,16 @@
+<div class="modal fade" id="delModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Confirm Delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <form action="/ideas/{{id}}?_method=DELETE" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="btn btn-danger">OK</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
