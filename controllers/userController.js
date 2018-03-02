@@ -55,8 +55,13 @@ exports.handleUsersRegistration = (req, res) => {
                 newUser.password = hash;
                 newUser.save()
                        .then(user => {
-                         req.flash('success_msg', 'Registered! You can now login.');
-                         res.redirect('/users/login');
+                         req.login(user, err => {
+                           if (err) throw err;
+                           req.flash('success_msg', 'Registered! Welcome to Vidjot.');
+                           res.redirect('/ideas');
+                         });
+                        //  req.flash('success_msg', 'Registered! You can now login.');
+                        //  res.redirect('/users/login');
                        })
                        .catch(err => {
                          if (err) throw err;
